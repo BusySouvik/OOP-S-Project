@@ -21,14 +21,13 @@ The application combines object-oriented programming principles with backend dev
 7. [Java OOP Concepts Used](#java-oop-concepts-used)
 8. [System Architecture](#system-architecture)
 9. [Database and Data Management](#database-and-data-management)
-10. [Project Structure](#project-structure)
-11. [Installation and Setup](#installation-and-setup)
-12. [Running the Application](#running-the-application)
-13. [Testing](#testing)
-14. [Security](#security)
-15. [Current Limitations](#current-limitations)
-16. [Future Scope](#future-scope)
-17. [Learning Outcomes](#learning-outcomes)
+10. [Installation and Setup](#installation-and-setup)
+11. [Running the Application](#running-the-application)
+12. [Testing](#testing)
+13. [Security](#security)
+14. [Current Limitations](#current-limitations)
+15. [Future Scope](#future-scope)
+16. [Learning Outcomes](#learning-outcomes)
 
 ---
 
@@ -336,48 +335,6 @@ Database connection settings are maintained in:
 `src/main/resources/application.properties`
 
 The database password is supplied through an environment variable rather than being committed as a password in the source code.
-
----
-
-## Project Structure
-
-The main application follows a conventional Spring Boot project structure.
-
-```text
-VCART/
-│
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/vcart/
-│   │   │       ├── config/
-│   │   │       ├── controller/
-│   │   │       ├── model/
-│   │   │       ├── repository/
-│   │   │       ├── service/
-│   │   │       └── VcartApplication.java
-│   │   │
-│   │   └── resources/
-│   │       ├── static/
-│   │       │   ├── css/
-│   │       │   └── js/
-│   │       │
-│   │       ├── templates/
-│   │       └── application.properties
-│   │
-│   └── test/
-│       └── java/
-│
-├── supabase/
-│   └── migrations/
-│
-├── .mvn/
-├── .gitignore
-├── mvnw
-├── mvnw.cmd
-├── pom.xml
-└── README.md
-```
 
 ---
 
