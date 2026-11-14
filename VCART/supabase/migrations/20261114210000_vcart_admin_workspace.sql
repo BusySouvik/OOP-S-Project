@@ -1,0 +1,36 @@
+CREATE TABLE IF NOT EXISTS public.staff_members (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    full_name VARCHAR(120) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    job_title VARCHAR(80) NOT NULL DEFAULT 'Staff',
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS public.refund_requests (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    order_id BIGINT NOT NULL REFERENCES public.orders(id),
+    user_id BIGINT NOT NULL REFERENCES public.users(id),
+    reason TEXT NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'REQUESTED'
+        CHECK (status IN ('REQUESTED','APPROVED','REJECTED','PROCESSED')),
+    admin_note TEXT,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS public.support_messages (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id BIGINT REFERENCES public.users(id) ON DELETE SET NULL,
+    subject VARCHAR(180) NOT NULL,
+    message TEXT NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'OPEN'
+        CHECK (status IN ('OPEN','IN_PROGRESS','RESOLVED')),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_refunds_status
+    ON public.refund_requests(status);
+CREATE INDEX IF NOT EXISTS idx_support_status
+    ON public.support_messages(status);

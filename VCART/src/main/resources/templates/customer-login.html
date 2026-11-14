@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Customer sign in | VCART</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/customer-site.css">
+    <script src="/js/security.js" defer></script>
+    <script src="/js/app.js?v=vcart-dual-1" defer></script>
+</head>
+<body class="auth-page customer-auth">
+<header class="navbar"><a href="/" class="brand">V<span>CART</span><small>.</small></a><a href="/" class="login-link">Back to VCART ↗</a></header>
+<main class="auth-shell">
+    <section class="auth-art"><span class="eyebrow">MADE FOR YOUR EVERYDAY</span><h1>Your world.<br><span>Your cart.</span></h1><p>Discover, save and shop the things you love.</p><div class="auth-monogram">V.</div></section>
+    <section class="auth-panel">
+        <span class="eyebrow">CUSTOMER ACCOUNT</span><h2>Sign in.</h2><p class="muted">Use your registered email and password.</p>
+        <form id="login-form" class="auth-form" data-login-role="customer">
+            <label>Email address<input type="email" name="email" autocomplete="username" required></label>
+            <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+            <button class="primary-button full-button" type="submit">Continue ↗</button><p id="form-message" class="form-message"></p>
+        </form>
+        <p class="auth-switch">New to VCART? <a href="/customer/register">Create a customer account</a></p>
+        <p class="auth-switch">Are you a shop owner? <a href="/owner/login">Owner sign in</a></p>
+        <p class="auth-switch"><a href="/">← Back to homepage</a></p>
+    </section>
+</main>
+</body>
+</html>

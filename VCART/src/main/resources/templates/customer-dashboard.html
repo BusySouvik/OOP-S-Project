@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My VCART | Customer</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/customer-site.css">
+    <script src="/js/security.js" defer></script>
+    <script src="/js/app.js?v=vcart-dual-1" defer></script>
+</head>
+<body class="storefront" data-page="customer-dashboard">
+<header class="shop-navbar"><a href="/" class="shop-brand">V<span>CART</span><i>.</i></a><nav class="shop-nav-links"><a href="/">Home</a><a href="/#products">Shop</a><a href="/orders">My orders</a></nav><div class="shop-nav-actions"><button data-logout class="shop-signin">Sign out</button></div></header>
+<main class="customer-dashboard-shell">
+    <span class="shop-kicker">YOUR VCART SPACE</span><h1>Welcome back<span id="customer-name">.</span></h1><p>Everything you need for a smoother shopping experience.</p>
+    <div class="customer-quick-grid">
+        <a href="/#products"><b>01</b><h2>Discover products</h2><p>Explore the latest collection.</p><span>Start shopping →</span></a>
+        <a href="/cart"><b>02</b><h2>Your shopping bag</h2><p>Review items you've picked.</p><span>Open bag →</span></a>
+        <a href="/orders"><b>03</b><h2>Orders & tracking</h2><p>See your purchases and order status.</p><span>View orders →</span></a>
+        <a href="/customer/tools"><b>04</b><h2>My account</h2><p>Update your profile, wishlist and support requests.</p><span>Manage account →</span></a>
+    </div>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+    try {
+        const response = await window.vcartFetch("/api/auth/me");
+        if (!response.ok) throw new Error("Please sign in.");
+        const user = await response.json();
+        if (String(user.role).toUpperCase() !== "CUSTOMER") throw new Error("Customer access required.");
+        document.getElementById("customer-name").textContent = `, ${user.full_name || "there"}.`;
+    } catch {
+        location.href = "/customer/login";
+    }
+});
+</script>
+</body>
+</html>

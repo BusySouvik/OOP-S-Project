@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Staff sign in | VCART</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/security.js" defer></script>
+    <script src="/js/app.js?v=vcart-staff-1" defer></script>
+</head>
+<body class="auth-page owner-auth">
+<header class="navbar"><a href="/" class="brand">V<span>CART</span><small>.</small></a><a href="/" class="login-link">Back to VCART ↗</a></header>
+<main class="auth-shell">
+    <section class="auth-art"><span class="eyebrow">VCART OPERATIONS</span><h1>Fulfilment.<br><span>Support.</span></h1><p>Staff access is limited to order fulfilment and customer support operations.</p><div class="auth-monogram">V.</div></section>
+    <section class="auth-panel">
+        <span class="eyebrow">STAFF PORTAL</span><h2>Sign in.</h2><p class="muted">Use the account created by your store owner.</p>
+        <form id="login-form" class="auth-form" data-login-role="staff">
+            <label>Email address<input type="email" name="email" autocomplete="username" required></label>
+            <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+            <button class="primary-button full-button" type="submit">Continue ↗</button><p id="form-message" class="form-message"></p>
+        </form>
+        <p class="auth-switch"><a href="/owner/login">Shop owner sign in</a></p>
+        <p class="auth-switch"><a href="/">← Back to homepage</a></p>
+    </section>
+</main>
+</body>
+</html>

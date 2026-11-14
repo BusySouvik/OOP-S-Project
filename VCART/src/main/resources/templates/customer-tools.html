@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My account | VCART</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/customer-site.css">
+    <script src="/js/security.js" defer></script>
+    <script src="/js/customer-tools.js?v=2" defer></script>
+</head>
+<body class="storefront customer-tools-page">
+    <header class="shop-navbar">
+        <a href="/customer/dashboard" class="shop-brand">V<span>CART</span><i>.</i></a>
+        <nav class="shop-nav-links">
+            <a href="/customer/dashboard#products">Shop</a>
+            <a href="/orders">My orders</a>
+            <a href="/wishlist">Wishlist</a>
+        </nav>
+        <div class="shop-nav-actions">
+            <a href="/cart" class="shop-cart-link">Bag</a>
+            <button type="button" class="shop-signin" data-logout>Log out</button>
+        </div>
+    </header>
+    <main class="customer-tools">
+        <span class="shop-kicker">CUSTOMER ACCOUNT</span>
+        <h1>Your account, <em>your way.</em></h1>
+        <p id="account-message" class="shop-catalogue-feedback" role="status" hidden></p>
+        <div class="tool-grid">
+            <section class="tool-card">
+                <h2>Profile</h2>
+                <form id="profile-form">
+                    <label>Email address
+                        <input id="profile-email" type="email" readonly aria-describedby="email-note">
+                    </label>
+                    <small id="email-note">Your registered email address cannot be changed here.</small>
+                    <label>Full name
+                        <input id="profile-name" required maxlength="100" autocomplete="name">
+                    </label>
+                    <label>Phone
+                        <input id="profile-phone" maxlength="20" autocomplete="tel">
+                    </label>
+                    <button class="shop-add-button" type="submit">Save profile</button>
+                </form>
+                <p id="profile-result" class="tool-note" role="status"></p>
+            </section>
+            <section class="tool-card">
+                <h2>Wishlist</h2>
+                <p class="tool-note">View saved products, current prices and stock availability.</p>
+                <a class="shop-primary-cta" href="/wishlist">Open wishlist <span>&rarr;</span></a>
+            </section>
+            <section class="tool-card">
+                <h2>Contact support</h2>
+                <form id="support-form">
+                    <label>Subject
+                        <input id="support-subject" maxlength="160" required>
+                    </label>
+                    <label>Message
+                        <textarea id="support-message" rows="4" maxlength="4000" required></textarea>
+                    </label>
+                    <button class="shop-add-button" type="submit">Send request</button>
+                </form>
+                <p id="support-result" class="tool-note" role="status"></p>
+            </section>
+            <section class="tool-card">
+                <h2>Your support requests</h2>
+                <div id="support-items" class="support-list">Loading requests…</div>
+            </section>
+        </div>
+    </main>
+    <footer class="shop-footer">
+        <a href="/customer/dashboard" class="shop-brand">V<span>CART</span><i>.</i></a>
+        <a href="/customer/dashboard#products">Continue shopping</a>
+        <span>Your world. Your cart.</span>
+    </footer>
+</body>
+</html>

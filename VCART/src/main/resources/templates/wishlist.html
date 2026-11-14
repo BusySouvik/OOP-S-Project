@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wishlist | VCART</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/customer-site.css">
+    <script src="/js/security.js" defer></script>
+    <script src="/js/app.js?v=vcart-customer-2" defer></script>
+    <script src="/js/wishlist.js?v=2" defer></script>
+</head>
+<body class="storefront" data-page="wishlist">
+    <header class="shop-navbar">
+        <a href="/customer/dashboard" class="shop-brand">V<span>CART</span><i>.</i></a>
+        <nav class="shop-nav-links">
+            <a href="/customer/dashboard#products">Shop</a>
+            <a href="/orders">My orders</a>
+            <a href="/customer/tools">My account</a>
+        </nav>
+        <div class="shop-nav-actions">
+            <a href="/cart" class="shop-cart-link">Bag <span data-cart-count>0</span></a>
+            <button type="button" class="shop-signin" data-logout>Log out</button>
+        </div>
+    </header>
+    <main class="wishlist-page">
+        <div class="page-heading">
+            <span class="shop-kicker">SAVED FOR LATER</span>
+            <h1>Your wishlist.</h1>
+            <p>Products and availability are refreshed from the current catalogue.</p>
+        </div>
+        <p id="wishlist-loading" class="shop-catalogue-feedback">Loading your wishlist…</p>
+        <p id="wishlist-feedback" class="shop-catalogue-feedback" role="status" hidden></p>
+        <div id="wishlist-empty" class="shop-empty-message" hidden>
+            <h2>Your wishlist is empty.</h2>
+            <p>Save products from the catalogue to keep them close.</p>
+            <a href="/customer/dashboard#products" class="shop-primary-cta">Browse products <span>&rarr;</span></a>
+        </div>
+        <div id="wishlist-products" class="wishlist-grid"></div>
+    </main>
+    <footer class="shop-footer">
+        <a href="/customer/dashboard" class="shop-brand">V<span>CART</span><i>.</i></a>
+        <a href="/customer/dashboard#products">Continue shopping</a>
+        <span>Your world. Your cart.</span>
+    </footer>
+</body>
+</html>

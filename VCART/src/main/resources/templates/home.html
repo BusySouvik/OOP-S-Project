@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VCART - Discover products. Shop smarter.">
+    <title>VCART | Your World. Your Cart.</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/customer-site.css}">
+    <script th:src="@{/js/security.js}" defer></script>
+    <script th:src="@{/js/app.js?v=vcart-next-1}" defer></script>
+    <script th:src="@{/js/storefront.js?v=1}" defer></script>
+    <script th:src="@{/js/wishlist.js?v=1}" defer></script>
+</head>
+<body class="storefront customer-experience" data-page="storefront"
+      th:attr="data-customer-home=${customerHome}">
+
+<header class="shop-navbar">
+    <a href="/" class="shop-brand">V<span>CART</span><i>.</i></a>
+
+    <nav class="shop-nav-links">
+        <a href="#categories">Categories</a>
+        <a href="#products">Shop all</a>
+        <a href="#about" th:unless="${customerHome}">About VCART</a>
+    </nav>
+
+    <div class="shop-nav-actions">
+        <div class="shop-guest-actions" id="guest-actions">
+            <a href="/customer/login" class="shop-signin">Customer sign in</a>
+            <a href="/owner/login" class="shop-owner-link">Owner portal ↗</a>
+        </div>
+        <div class="shop-account-wrap" id="customer-session-actions" hidden>
+            <button type="button" class="shop-profile-toggle" id="profile-toggle"
+                    aria-expanded="false" aria-controls="profile-menu">
+                <span class="shop-avatar" aria-hidden="true">V</span>
+                <span id="account-link">My account</span>
+                <span aria-hidden="true">⌄</span>
+            </button>
+            <div class="shop-profile-menu" id="profile-menu" hidden>
+                <p class="shop-profile-greeting">
+                    Signed in as <strong id="profile-name">Customer</strong>
+                    <small id="profile-email"></small>
+                    <small id="profile-role"></small>
+                </p>
+                <a href="/orders" data-customer-only>My orders</a>
+                <a href="/wishlist" data-customer-only>Wishlist</a>
+                <a href="/customer/tools" data-customer-only>Account &amp; support</a>
+                <a id="owner-dashboard-link" href="/owner/dashboard" hidden>Owner dashboard</a>
+                <a id="staff-dashboard-link" href="/staff/dashboard" hidden>Staff dashboard</a>
+                <button type="button" data-logout>Log out</button>
+                <p id="account-error" class="shop-account-error" role="status" hidden></p>
+            </div>
+        </div>
+        <a href="/cart" class="shop-cart-link">
+            Bag <span id="cart-count" data-cart-count>0</span>
+        </a>
+    </div>
+</header>
+
+<main>
+    <section class="shop-hero" id="home" th:unless="${customerHome}">
+        <div class="shop-hero-copy">
+            <span class="shop-kicker"><span></span> THE EVERYDAY COLLECTION</span>
+            <h1>Find your<br>next <em>favourite.</em></h1>
+            <p>Thoughtfully selected essentials, everyday discoveries and little things that make life better.</p>
+            <div class="shop-hero-actions">
+                <a href="#products" class="shop-primary-cta">Explore the collection <span>&rarr;</span></a>
+                <a href="#categories" class="shop-text-link">Discover more</a>
+            </div>
+            <div class="shop-hero-foot">
+                <span>01 / DISCOVER</span>
+                <span>02 / CHOOSE</span>
+                <span>03 / ENJOY</span>
+            </div>
+        </div>
+
+        <div class="shop-hero-visual">
+            <div class="shop-orbit shop-orbit-one"></div>
+            <div class="shop-orbit shop-orbit-two"></div>
+            <div class="shop-feature-card">
+                <div class="shop-feature-top"><span>VCART EDITION</span><span>NO. 001</span></div>
+                <div class="shop-feature-mark">V.</div>
+                <div class="shop-feature-bottom">
+                    <span>GOOD FINDS.<br>GREAT FEELINGS.</span>
+                    <span class="shop-feature-arrow">&nearr;</span>
+                </div>
+            </div>
+            <div class="shop-floating-note"><span>✳</span> A little something for everyone.</div>
+            <div class="shop-side-caption">YOUR WORLD. YOUR CART.</div>
+        </div>
+    </section>
+
+    <section class="shop-customer-welcome" th:if="${customerHome}">
+        <span class="shop-kicker">YOUR VCART</span>
+        <h1>Welcome back<span id="customer-greeting"></span>.<br>Find your next <em>favourite.</em></h1>
+        <p>Browse the current catalogue, save products, and keep your orders close at hand.</p>
+        <a href="#products" class="shop-primary-cta">Explore products <span>&rarr;</span></a>
+    </section>
+
+    <section class="shop-trust-strip" th:unless="${customerHome}">
+        <div><strong>01</strong><span>Curated discoveries</span></div>
+        <div><strong>02</strong><span>Easy shopping</span></div>
+        <div><strong>03</strong><span>One simple experience</span></div>
+    </section>
+
+    <section class="shop-category-section" id="categories">
+        <div class="shop-section-heading">
+            <div>
+                <span class="shop-kicker">BROWSE THE CATALOGUE</span>
+                <h2>Shop by <em>category.</em></h2>
+            </div>
+            <p>Categories and products shown here come from the active VCART catalogue.</p>
+        </div>
+
+        <div class="shop-category-grid">
+            <a href="#products" class="shop-category"
+               th:each="category, categoryStat : ${categories}"
+               th:attr="data-category-filter=${category.id}">
+                <span class="shop-category-index"
+                      th:text="${#numbers.formatInteger(categoryStat.count, 2)} + ' / VCART CATEGORY'">01 / VCART CATEGORY</span>
+                <div>
+                    <h3 th:text="${category.name}">Category name</h3>
+                    <span th:text="${category.description != null and !#strings.isEmpty(category.description) ? category.description : 'Browse products'}">Browse products</span>
+                </div>
+                <span class="shop-category-symbol" aria-hidden="true">✳</span>
+            </a>
+        </div>
+        <p class="shop-empty-message shop-category-empty" th:if="${#lists.isEmpty(categories)}">
+            No active categories are available right now.
+        </p>
+    </section>
+
+    <section class="shop-products-section" id="products">
+        <div class="shop-section-heading shop-product-heading">
+            <div>
+                <span class="shop-kicker">ACTIVE PRODUCTS</span>
+                <h2>Explore the <em>catalogue.</em></h2>
+                <p class="shop-product-subtitle">Prices, stock, categories and product details reflect the current catalogue.</p>
+            </div>
+            <span class="shop-collection-stamp">VCART<br>CATALOGUE <b>✳</b></span>
+        </div>
+
+        <form class="shop-toolbar" id="catalogue-filter-form">
+            <label class="shop-search">
+                <span>⌕</span>
+                <input id="product-search" type="search" maxlength="120"
+                       placeholder="Search name, description, SKU or category..." aria-label="Search products">
+            </label>
+            <div class="shop-toolbar-right">
+                <label class="shop-filter-control">Category
+                    <select id="category-filter" aria-label="Filter by category">
+                        <option value="">All categories</option>
+                        <option th:each="category : ${categories}" th:value="${category.id}"
+                                th:text="${category.name}">Category</option>
+                    </select>
+                </label>
+                <label class="shop-filter-control">Min price
+                    <input id="minimum-price" type="number" min="0" step="0.01"
+                           inputmode="decimal" aria-label="Minimum price">
+                </label>
+                <label class="shop-filter-control">Max price
+                    <input id="maximum-price" type="number" min="0" step="0.01"
+                           inputmode="decimal" aria-label="Maximum price">
+                </label>
+                <label class="shop-filter-control">Availability
+                    <select id="availability-filter" aria-label="Filter by availability">
+                        <option value="">All products</option>
+                        <option value="true">In stock</option>
+                        <option value="false">Out of stock</option>
+                    </select>
+                </label>
+                <select id="product-sort" aria-label="Sort products">
+                    <option value="newest">Newest</option>
+                    <option value="relevance">Relevance</option>
+                    <option value="price_asc">Price: low to high</option>
+                    <option value="price_desc">Price: high to low</option>
+                    <option value="name_asc">Name: A to Z</option>
+                </select>
+                <button class="outline-button shop-filter-submit" type="submit">Apply</button>
+                <button class="outline-button shop-filter-clear" type="button" id="clear-filters">Clear</button>
+            </div>
+        </form>
+        <p class="shop-catalogue-feedback" id="catalogue-feedback" role="status" hidden></p>
+        <p class="shop-product-count" id="visible-product-count" aria-live="polite"></p>
+
+        <div class="shop-empty-message" id="catalogue-status"
+             th:if="${#lists.isEmpty(products)}">
+            <span>✳</span>
+            <h3>No products available.</h3>
+            <p>No products are available right now. Check back soon.</p>
+        </div>
+
+        <div class="shop-product-grid" id="product-grid">
+            <article class="shop-product-card" th:each="product : ${products}"
+                     th:attr="data-product-id=${product.id}">
+                <div class="shop-product-image">
+                    <img th:if="${product.imageUrl != null and !#strings.isEmpty(product.imageUrl)}"
+                         th:src="${product.imageUrl}" th:alt="${product.name}" loading="lazy">
+                    <div class="shop-product-placeholder"
+                         th:if="${product.imageUrl == null or #strings.isEmpty(product.imageUrl)}">
+                        <span>V.</span>
+                    </div>
+                    <span class="shop-product-tag"
+                          th:text="${product.stockQuantity > 0 ? 'AVAILABLE NOW' : 'SOLD OUT'}">AVAILABLE NOW</span>
+                </div>
+
+                <div class="shop-product-info">
+                    <div class="shop-product-meta">
+                        <span th:text="${product.categoryName != null ? product.categoryName : 'Uncategorised'}">Category</span>
+                        <span th:text="${'SKU ' + product.sku}">SKU</span>
+                    </div>
+                    <h3 th:text="${product.name}">Product name</h3>
+                    <p th:text="${product.description != null and !#strings.isEmpty(product.description) ? product.description : 'No product description provided.'}">Product description</p>
+                    <div class="shop-product-buy">
+                        <strong th:text="${'&#8377;' + #numbers.formatDecimal(product.price, 1, 2)}">&#8377;0.00</strong>
+                        <button type="button" class="shop-add-button add-to-cart"
+                                th:attr="data-product-id=${product.id}"
+                                th:data-stock="${product.stockQuantity}"
+                                th:disabled="${product.stockQuantity <= 0}">
+                            <span th:text="${product.stockQuantity > 0 ? 'Add to bag' : 'Sold out'}">Add to bag</span>
+                            <b>&rarr;</b>
+                        </button>
+                    </div>
+                    <p class="shop-stock-note"
+                       th:text="${product.stockQuantity > 0 ? product.stockQuantity + ' available' : 'Currently out of stock'}">Stock status</p>
+                    <button type="button" class="shop-save-button"
+                            th:attr="data-add-wishlist=${product.id}">♡ Save to wishlist</button>
+                    <button type="button" class="shop-product-details-button"
+                            th:attr="data-product-details=${product.id}">View product details</button>
+                </div>
+            </article>
+        </div>
+        <div class="shop-empty-message" id="shop-no-results" hidden>
+            <h3>No matching products.</h3>
+            <p>Try changing your search or filters.</p>
+        </div>
+        <button type="button" class="shop-load-more" id="load-more-products" hidden>
+            Load more products
+        </button>
+    </section>
+
+    <dialog id="product-details-dialog" class="shop-product-dialog" aria-labelledby="product-detail-title">
+        <button type="button" class="shop-dialog-close" aria-label="Close product details">×</button>
+        <div id="product-details-content"></div>
+    </dialog>
+
+    <section class="shop-trust-strip" th:unless="${customerHome}"><div><strong>FOR CUSTOMERS</strong><span>Discover, shop and track orders</span></div><div><strong>FOR OWNERS</strong><span>Manage products, stock and sales</span></div><div><strong>ONE PLATFORM</strong><span>Two focused experiences</span></div></section>
+
+    <section class="shop-home-section" id="about" th:unless="${customerHome}">
+        <span class="shop-kicker">ABOUT VCART</span>
+        <h2>Good finds, with a simpler way to shop.</h2>
+        <p>VCART brings product discovery, a personal shopping bag and order tracking together, while giving store owners a separate place to run day-to-day operations.</p>
+        <a class="shop-text-link" href="/about">More about VCART →</a>
+    </section>
+
+    <section class="shop-home-section shop-home-features" id="features" th:unless="${customerHome}">
+        <span class="shop-kicker">MADE FOR BOTH SIDES OF THE STORE</span>
+        <h2>Shopping and store tools, in one place.</h2>
+        <div class="shop-home-grid">
+            <article><h3>For customers</h3><p>Browse, search, save products, manage your cart and follow your orders.</p></article>
+            <article><h3>For owners</h3><p>Manage products, stock, categories, orders, support and store reports.</p></article>
+            <article><h3>Separate access</h3><p>Dedicated customer and owner sign-in portals protect each experience.</p></article>
+        </div>
+        <a class="shop-text-link" href="/features">Explore features →</a>
+    </section>
+
+    <section class="shop-home-section shop-home-steps" id="how-it-works" th:unless="${customerHome}">
+        <span class="shop-kicker">HOW IT WORKS</span>
+        <h2>Discover. Choose. Enjoy.</h2>
+        <div class="shop-home-grid">
+            <article><b>01</b><h3>Find your favourite</h3><p>Explore the catalogue and search for what you need.</p></article>
+            <article><b>02</b><h3>Make it yours</h3><p>Add available items to your bag and choose a delivery address.</p></article>
+            <article><b>03</b><h3>Keep track</h3><p>Review your order history and current order status from your account.</p></article>
+        </div>
+    </section>
+
+    <section class="shop-home-section shop-home-contact" id="contact" th:unless="${customerHome}">
+        <span class="shop-kicker">CONTACT & SUPPORT</span>
+        <h2>Need a hand?</h2>
+        <p>Customers can send a support request and follow its status from their account.</p>
+        <a class="shop-primary-cta" href="/customer/login">Contact customer support <span>&rarr;</span></a>
+    </section>
+
+    <section class="shop-closing" id="get-started" th:unless="${customerHome}">
+        <span class="shop-kicker">A GOOD DAY TO DISCOVER</span>
+        <h2>Your next favourite<br>is <em>waiting.</em></h2>
+        <a href="#products" class="shop-primary-cta">Find your something <span>&rarr;</span></a>
+        <a href="/customer/register" class="shop-text-link">Create a customer account</a>
+        <a href="/owner/login" class="shop-text-link">Owner sign in</a>
+        <div class="shop-closing-watermark">VCART.</div>
+    </section>
+</main>
+
+<footer class="shop-footer">
+    <a href="/" class="shop-brand">V<span>CART</span><i>.</i></a>
+    <p>Your world. Your cart.</p>
+    <nav class="footer-portals" th:unless="${customerHome}"><a href="/about">About</a> · <a href="/features">Features</a> · <a href="/customer/login">Customer sign in</a> · <a href="/owner/login">Owner portal</a></nav>
+    <nav class="footer-portals" th:if="${customerHome}"><a href="/orders">My orders</a> · <a href="/wishlist">Wishlist</a> · <a href="/customer/tools">Account</a></nav>
+    <span>&copy; 2026 VCART. ALL RIGHTS RESERVED.</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout | VCART</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/customer-site.css">
+<script src="/js/security.js" defer></script>
+<script src="/js/app.js?v=3" defer></script>
+</head>
+<body data-page="checkout">
+<header class="navbar"><a href="/" class="brand">V<span>CART</span><small>.</small></a><a href="/cart" class="login-link">← Back to cart</a></header>
+<main class="page-container">
+<div class="page-heading"><span class="eyebrow">ALMOST YOURS</span><h1>Checkout.</h1><p>Confirm your delivery details and complete your order.</p></div>
+<div class="checkout-layout">
+<section class="form-card">
+<h2>Delivery details</h2>
+<form id="checkout-form" class="auth-form">
+<label>Shipping address<textarea name="shippingAddress" rows="4" maxlength="2000" placeholder="House number, street, city, state, PIN code" required></textarea></label>
+<div class="coupon-row"><input id="coupon-code" placeholder="Enter coupon code"><button type="button" id="apply-coupon" class="outline-button">Apply</button></div>
+<p id="coupon-message" class="form-message"></p>
+<button type="submit" class="primary-button full-button">Place order &amp; run development payment ↗</button>
+<p id="form-message" class="form-message"></p>
+<p class="form-message">Development mock only: no real money will be charged.</p>
+</form>
+</section>
+<aside class="summary-card"><h2>Your order</h2><div id="checkout-items"></div><div class="summary-line"><span>Subtotal</span><strong id="checkout-subtotal">₹0.00</strong></div><div class="summary-line"><span>Discount</span><strong id="checkout-discount">₹0.00</strong></div><div class="summary-total"><span>Total</span><strong id="checkout-total">₹0.00</strong></div></aside>
+</div>
+</main>
+</body>
+</html>

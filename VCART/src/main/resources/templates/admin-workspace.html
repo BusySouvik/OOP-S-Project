@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VCART | Owner Workspace</title>
+<link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body class="admin-body" data-page="workspace">
+<nav class="vcart-owner-shortcuts" style="display:flex;gap:16px;flex-wrap:wrap;padding:12px 20px;background:#1F3D2B;color:#fff"><a style="color:#fff" href="/owner/dashboard">Owner home</a><a style="color:#fff" href="/owner/analytics">Analytics</a><a style="color:#fff" href="/admin/reports">Reports & CSV</a><a style="color:#fff" href="/">View storefront</a><button type="button" data-logout style="margin-left:auto">Sign out</button></nav>
+<div class="admin-layout">
+<aside class="admin-sidebar">
+<a href="/admin" class="admin-brand">VCART<span>.</span></a>
+<div class="sidebar-caption">MANAGEMENT</div>
+<nav class="sidebar-nav" id="workspace-nav">
+<a href="#orders" class="nav-link" data-section="orders"><span>▣</span> Orders</a>
+<a href="#products" class="nav-link active" data-section="products"><span>◇</span> Products</a>
+<a href="#categories" class="nav-link" data-section="categories"><span>▦</span> Categories</a>
+<a href="#inventory" class="nav-link" data-section="inventory"><span>▤</span> Inventory</a>
+<a href="#customers" class="nav-link" data-section="customers"><span>♙</span> Customers</a>
+<a href="#transactions" class="nav-link" data-section="transactions"><span>₹</span> Transactions</a>
+<a href="#refunds" class="nav-link" data-section="refunds"><span>↶</span> Refunds</a>
+<a href="#staff" class="nav-link" data-section="staff"><span>♧</span> Staff</a>
+<a href="#support" class="nav-link" data-section="support"><span>✉</span> Support Inbox</a>
+<a href="#finance" class="nav-link" data-section="finance"><span>▥</span> Finance</a>
+<a href="#coupons" class="nav-link" data-section="coupons"><span>%</span> Coupons</a>
+<a href="/owner/dashboard" class="nav-link"><span>⌂</span> Dashboard</a>
+</nav>
+</aside>
+<main class="admin-main">
+<header class="admin-topbar"><strong>VCART Management Workspace</strong><a href="/owner/dashboard">Back to Dashboard</a></header>
+<div class="admin-content">
+<div class="admin-heading"><div><div class="eyebrow">STORE OPERATIONS</div><h1 id="workspace-title">Product Management</h1><p>Manage your store operations from one place.</p></div></div>
+<p id="workspace-message" class="admin-message"></p>
+
+<section class="workspace-section" id="section-orders" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Order Management</h2><p>Review orders and advance their fulfillment status.</p></div></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>ORDER</th><th>CUSTOMER</th><th>TOTAL</th><th>PAYMENT</th><th>STATUS</th><th>UPDATE STATUS</th></tr></thead><tbody id="orders-table"></tbody></table></div></div>
+</section>
+
+<section class="workspace-section" id="section-products">
+<div class="inventory-panel">
+<div class="panel-heading"><div><h2>Products</h2><p>Add, edit, search and deactivate products.</p></div></div>
+<div class="workspace-form">
+<input id="p-name" placeholder="Product name">
+<input id="p-sku" placeholder="SKU">
+<input id="p-slug" placeholder="Slug">
+<input id="p-price" type="number" step="0.01" placeholder="Price">
+<input id="p-stock" type="number" placeholder="Initial stock">
+<input id="p-category" type="number" placeholder="Category ID (optional)">
+<input id="p-image" placeholder="Image URL">
+<textarea id="p-description" placeholder="Description"></textarea>
+<button class="primary-button" id="add-product">Add Product</button>
+</div>
+<div class="table-toolbar"><input id="product-search" placeholder="Search products..."><button class="outline-button" id="search-products">Search</button><button class="outline-button" id="load-products">Show all</button></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>NAME</th><th>SKU</th><th>PRICE</th><th>STOCK</th><th>ACTION</th></tr></thead><tbody id="products-table"></tbody></table></div>
+</div>
+</section>
+
+<section class="workspace-section" id="section-categories" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Categories & Attributes</h2><p>Create and organize product categories.</p></div></div>
+<div class="workspace-form"><input id="cat-name" placeholder="Category name"><input id="cat-description" placeholder="Description"><button class="primary-button" id="add-category">Create Category</button></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>NAME</th><th>DESCRIPTION</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="categories-table"></tbody></table></div></div>
+</section>
+
+<section class="workspace-section" id="section-inventory" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Inventory Management</h2><p>Low-stock threshold: 5 units. Update stock levels.</p></div></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>PRODUCT</th><th>SKU</th><th>STOCK</th><th>UPDATE QUANTITY</th></tr></thead><tbody id="inventory-table"></tbody></table></div></div>
+</section>
+
+<section class="workspace-section" id="section-customers" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Customer Management</h2><p>Review accounts and activate or deactivate customers.</p></div></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>NAME</th><th>EMAIL</th><th>PHONE</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="customers-table"></tbody></table></div></div>
+</section>
+
+<section class="workspace-section" id="section-transactions" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Transactions</h2><p>Order and payment-status records.</p></div></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>ORDER</th><th>USER ID</th><th>AMOUNT</th><th>PAYMENT</th><th>PROVIDER</th><th>ATTEMPT</th><th>ORDER STATUS</th><th>DATE</th></tr></thead><tbody id="transactions-table"></tbody></table></div></div>
+</section>
+
+<section class="workspace-section" id="section-refunds" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Refund Requests</h2><p>Review and process requests. The configured development mock never moves money.</p></div></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>ORDER</th><th>AMOUNT</th><th>PAYMENT PROVIDER</th><th>REASON</th><th>STATUS</th><th>REVIEW / PROCESS</th></tr></thead><tbody id="refunds-table"></tbody></table></div></div>
+</section>
+
+<section class="workspace-section" id="section-staff" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Staff Accounts</h2><p>Staff can manage fulfillment and support only; finance, refunds and account administration stay owner-only.</p></div></div>
+<div class="workspace-form"><input id="staff-name" placeholder="Full name"><input id="staff-email" type="email" placeholder="Email"><input id="staff-title" placeholder="Job title"><input id="staff-password" type="password" minlength="8" placeholder="Initial password (8+ chars)"><button class="primary-button" id="add-staff">Create Staff Login</button></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>NAME</th><th>EMAIL</th><th>JOB TITLE</th><th>EMPLOYMENT</th><th>LOGIN</th><th>ACTION</th></tr></thead><tbody id="staff-table"></tbody></table></div></div>
+</section>
+
+<section class="workspace-section" id="section-support" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Support Inbox</h2><p>Track support messages and resolution status.</p></div></div>
+<div class="workspace-form"><input id="support-subject" placeholder="Subject"><textarea id="support-message" placeholder="Message"></textarea><button class="primary-button" id="create-support">Create Message</button></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>SUBJECT</th><th>MESSAGE</th><th>CUSTOMER</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody id="support-table"></tbody></table></div></div>
+</section>
+
+<section class="workspace-section" id="section-finance" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Finance Overview</h2><p>Revenue and payment summaries derived from order records.</p></div></div>
+<div class="admin-stats">
+<article class="stat-card"><span>Orders</span><strong id="fin-orders">—</strong></article>
+<article class="stat-card"><span>Gross Order Value</span><strong id="fin-gross">—</strong></article>
+<article class="stat-card"><span>Verified Provider Revenue</span><strong id="fin-paid">—</strong></article>
+<article class="stat-card"><span>Simulated Paid Amount</span><strong id="fin-mock">—</strong></article>
+<article class="stat-card"><span>Pending Payments</span><strong id="fin-pending">—</strong></article>
+<article class="stat-card"><span>Failed Payments</span><strong id="fin-failed">—</strong></article>
+</div></div>
+</section>
+
+<section class="workspace-section" id="section-coupons" hidden>
+<div class="inventory-panel"><div class="panel-heading"><div><h2>Coupons & Discounts</h2><p>Use the existing VCART discount management API.</p></div><a href="/admin">Dashboard</a></div>
+<div class="workspace-form"><input id="coupon-code" placeholder="Coupon code"><select id="coupon-type"><option value="PERCENTAGE">Percentage</option><option value="FIXED">Fixed amount</option></select><input id="coupon-value" type="number" placeholder="Discount value"><input id="coupon-minimum" type="number" placeholder="Minimum order"><input id="coupon-maximum" type="number" placeholder="Maximum discount"><input id="coupon-limit" type="number" placeholder="Usage limit"><button class="primary-button" id="create-coupon">Create Coupon</button></div>
+<div class="table-wrap"><table class="admin-table"><thead><tr><th>CODE</th><th>TYPE</th><th>VALUE</th><th>USED</th><th>ACTIVE</th><th>ACTION</th></tr></thead><tbody id="coupons-table"></tbody></table></div></div>
+</section>
+</div>
+</main>
+</div>
+<script th:src="@{/js/security.js}"></script>
+<script th:src="@{/js/admin-workspace.js}"></script>
+</body>
+</html>

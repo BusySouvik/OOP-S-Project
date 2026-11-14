@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Cart | VCART</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/customer-site.css">
+<script src="/js/security.js" defer></script>
+<script src="/js/app.js?v=3" defer></script>
+</head>
+<body data-page="cart">
+<header class="navbar">
+<a href="/" class="brand">V<span>CART</span><small>.</small></a>
+<nav class="nav-links"><a href="/customer/dashboard#products">Continue shopping</a><a href="/orders">My orders</a><a href="/wishlist">Wishlist</a><a href="/customer/tools">My account</a></nav>
+<div class="nav-actions"><button class="text-button" data-logout>Logout</button></div>
+</header>
+<main class="page-container">
+<div class="page-heading"><span class="eyebrow">YOUR SELECTION</span><h1>Shopping cart.</h1><p>Everything you've picked, in one place.</p></div>
+<div id="cart-content" class="cart-layout">
+<div id="cart-items" class="cart-items"><p>Loading your cart...</p></div>
+<aside class="summary-card">
+<h2>Order summary</h2>
+<div class="summary-line"><span>Items</span><strong id="cart-count">0</strong></div>
+<div class="summary-line"><span>Subtotal</span><strong id="cart-subtotal">₹0.00</strong></div>
+<div class="summary-total"><span>Total</span><strong id="cart-total">₹0.00</strong></div>
+<a href="/checkout" class="primary-button full-button">Continue to checkout ↗</a>
+<a href="/customer/dashboard#products" class="secondary-link">Continue shopping</a>
+</aside>
+</div>
+</main>
+<footer class="footer"><a href="/" class="brand">VCART.</a><p>Your world. Your cart.</p></footer>
+</body>
+</html>

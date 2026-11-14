@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VCART | Staff Operations</title>
+<link rel="stylesheet" href="/css/admin.css">
+<script src="/js/security.js" defer></script>
+<script src="/js/staff-dashboard.js" defer></script>
+</head>
+<body class="admin-body" data-page="staff">
+<nav style="display:flex;gap:16px;flex-wrap:wrap;padding:12px 20px;background:#1F3D2B;color:#fff">
+    <strong>VCART Staff Operations</strong>
+    <span>Limited access: fulfilment and support only</span>
+    <button type="button" id="staff-logout" style="margin-left:auto">Sign out</button>
+</nav>
+<main class="admin-content">
+    <div class="admin-heading">
+        <div><div class="eyebrow">STAFF WORKSPACE</div><h1>Store operations.</h1><p>Financial, refund, product and account administration are not available in this portal.</p></div>
+    </div>
+    <p id="staff-message" class="admin-message" role="status"></p>
+    <section class="inventory-panel">
+        <div class="panel-heading"><div><h2>Verified paid orders</h2><p>Only orders confirmed by a real payment provider are available for fulfilment.</p></div></div>
+        <div class="table-wrap"><table class="admin-table"><thead><tr><th>ORDER</th><th>CUSTOMER</th><th>DELIVERY</th><th>TOTAL</th><th>STATUS</th><th>UPDATE</th></tr></thead><tbody id="staff-orders"></tbody></table></div>
+    </section>
+    <section class="inventory-panel" style="margin-top:24px">
+        <div class="panel-heading"><div><h2>Support inbox</h2><p>View customer requests and update resolution status.</p></div></div>
+        <div class="table-wrap"><table class="admin-table"><thead><tr><th>SUBJECT</th><th>MESSAGE</th><th>CUSTOMER</th><th>STATUS</th><th>UPDATE</th></tr></thead><tbody id="staff-support"></tbody></table></div>
+    </section>
+</main>
+</body>
+</html>

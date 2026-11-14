@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VCART | Owner Reports</title>
+<link rel="stylesheet" th:href="@{/css/admin.css}">
+<style>
+body{margin:0;background:#f4f0e7;color:#1f3d2b;font-family:Arial,sans-serif}
+.wrap{max-width:1050px;margin:55px auto;padding:24px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+h1{font-size:clamp(2rem,5vw,3.4rem);margin:8px 0}
+.muted{color:#66736b;line-height:1.6}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:30px}
+.card{background:white;border:1px solid #e4ddcf;border-radius:18px;padding:24px}
+a.btn{display:inline-block;margin-top:15px;padding:12px 18px;background:#1f3d2b;color:white;text-decoration:none;border-radius:9px;font-weight:700}
+a.back{color:#1f3d2b}
+</style></head>
+<body><main class="wrap">
+<div class="top"><a class="back" href="/admin/manage">← Back to owner workspace</a><strong>VCART OWNER CENTRE</strong></div>
+<p class="muted">BUSINESS INTELLIGENCE</p><h1>Reports & exports</h1>
+<p class="muted">Download spreadsheet-ready CSV reports for your orders and product inventory. Open them in Excel or Google Sheets.</p>
+<section class="cards">
+<article class="card"><h2>Orders report</h2><p class="muted">Order number, customer, subtotal, discount, total, order status, payment status, shipping address and date.</p><a class="btn" href="/api/admin/reports/orders.csv">Download orders CSV</a></article>
+<article class="card"><h2>Products report</h2><p class="muted">SKU, product, category, price, current stock, active status and units sold.</p><a class="btn" href="/api/admin/reports/products.csv">Download products CSV</a></article>
+</section>
+</main></body></html>
