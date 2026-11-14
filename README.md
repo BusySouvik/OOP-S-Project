@@ -451,29 +451,6 @@ From there, users can navigate to customer login or owner login.
 
 ---
 
-## Running the Application as a JAR
-
-Instead of using Spring Boot's Maven run command, you can package the application:
-
-```powershell
-.\mvnw.cmd package
-```
-
-Then run the generated executable JAR:
-
-```powershell
-java -jar .\target\vcart-0.0.1-SNAPSHOT.jar
-```
-
-The application will be available at:
-
-```text
-http://localhost:8080
-```
-
-Make sure the required datasource environment variables are configured in the same terminal session.
-
----
 
 ## Testing
 
